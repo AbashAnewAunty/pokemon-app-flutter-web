@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
+import 'package:pokemon_app_flutter_web/infrastracture/api/rest_client.dart';
+
+final logger = Logger();
 
 void main() {
+  final dio = Dio(); // Provide a dio instance
+  dio.options.headers['Demo-Header'] = 'demo header'; // config your dio headers globally
+  final client = RestClient(dio);
+
+  client.getPokemonUrlList().then((it) => logger.i(it));
+
   runApp(const MyApp());
 }
 

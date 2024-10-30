@@ -14,12 +14,13 @@ class MyWidget extends HookConsumerWidget {
     final pokemonsAsyncValue = ref.watch(pokemonModelsProvider);
 
     return Material(
+      color: const Color.fromARGB(255, 227, 49, 40),
       child: Center(
         child: switch (pokemonsAsyncValue) {
-          AsyncLoading() => const Center(child: CircularProgressIndicator()),
+          AsyncLoading() => const Center(child: CircularProgressIndicator(color: Colors.white)),
           AsyncError() => const Text('Oops, something unexpected happened'),
           AsyncData(:final value) => _PokemonListView(pokemonModels: value),
-          _ => const CircularProgressIndicator(),
+          _ => const CircularProgressIndicator(color: Colors.white),
         },
       ),
     );
@@ -37,15 +38,27 @@ class _PokemonListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ListView.builder(
+        padding: const EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 20,
+        ),
         itemCount: pokemonModels.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            leading: SizedBox(
-              height: 50,
-              width: 50,
-              child: CachedNetworkImage(imageUrl: pokemonModels[index].sprites.front_default),
+          return Container(
+            width: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
             ),
-            title: Text(pokemonModels[index].name),
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            child: ListTile(
+              leading: SizedBox(
+                height: 50,
+                width: 50,
+                child: CachedNetworkImage(imageUrl: pokemonModels[index].sprites.front_default),
+              ),
+              title: Text("No.${pokemonModels[index].id} ${pokemonModels[index].name}"),
+            ),
           );
         },
       ),

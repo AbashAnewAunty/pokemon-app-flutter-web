@@ -9,17 +9,17 @@ part of 'pokemon_sprites_model.dart';
 _$PokemonSpritesModelImpl _$$PokemonSpritesModelImplFromJson(
         Map<String, dynamic> json) =>
     _$PokemonSpritesModelImpl(
-      frontDefault: json['frontDefault'] as String,
-      frongShiny: json['frongShiny'] as String?,
-      backDefault: json['backDefault'] as String?,
-      backShiny: json['backShiny'] as String?,
+      front_default: json['front_default'] as String,
+      front_shiny: json['front_shiny'] as String?,
+      back_default: json['back_default'] as String?,
+      back_shiny: json['back_shiny'] as String?,
     );
 
 Map<String, dynamic> _$$PokemonSpritesModelImplToJson(
         _$PokemonSpritesModelImpl instance) =>
     <String, dynamic>{
-      'frontDefault': instance.frontDefault,
-      'frongShiny': instance.frongShiny,
-      'backDefault': instance.backDefault,
-      'backShiny': instance.backShiny,
+      'front_default': instance.front_default,
+      'front_shiny': instance.front_shiny,
+      'back_default': instance.back_default,
+      'back_shiny': instance.back_shiny,
     };

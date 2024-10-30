@@ -11,10 +11,10 @@ part 'pokemon_sprites_model.g.dart';
 @freezed
 class PokemonSpritesModel with _$PokemonSpritesModel {
   const factory PokemonSpritesModel({
-    required String frontDefault,
-    String? frongShiny,
-    String? backDefault,
-    String? backShiny,
+    required String front_default,
+    String? front_shiny,
+    String? back_default,
+    String? back_shiny,
   }) = _PokemonSpritesModel;
 
   factory PokemonSpritesModel.fromJson(Map<String, Object?> json) => _$PokemonSpritesModelFromJson(json);

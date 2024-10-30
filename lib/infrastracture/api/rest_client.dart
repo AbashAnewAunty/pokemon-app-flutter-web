@@ -14,5 +14,5 @@ abstract class RestClient {
   Future<PokemonUrlListModel> getPokemonUrlList();
 
   @GET('/pokemon/{idOrName}')
-  Future<PokemonModel> getPokemon(@Path('name') String idOrName);
+  Future<PokemonModel> getPokemon(@Path('idOrName') String idOrName);
 }

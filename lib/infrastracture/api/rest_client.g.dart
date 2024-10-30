@@ -69,7 +69,7 @@ class _RestClient implements RestClient {
     )
         .compose(
           _dio.options,
-          '/pokemon/{idOrName}',
+          '/pokemon/${idOrName}',
           queryParameters: queryParameters,
           data: _data,
         )

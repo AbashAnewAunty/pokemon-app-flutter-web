@@ -20,10 +20,10 @@ PokemonSpritesModel _$PokemonSpritesModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PokemonSpritesModel {
-  String get frontDefault => throw _privateConstructorUsedError;
-  String? get frongShiny => throw _privateConstructorUsedError;
-  String? get backDefault => throw _privateConstructorUsedError;
-  String? get backShiny => throw _privateConstructorUsedError;
+  String get front_default => throw _privateConstructorUsedError;
+  String? get front_shiny => throw _privateConstructorUsedError;
+  String? get back_default => throw _privateConstructorUsedError;
+  String? get back_shiny => throw _privateConstructorUsedError;
 
   /// Serializes this PokemonSpritesModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +42,10 @@ abstract class $PokemonSpritesModelCopyWith<$Res> {
       _$PokemonSpritesModelCopyWithImpl<$Res, PokemonSpritesModel>;
   @useResult
   $Res call(
-      {String frontDefault,
-      String? frongShiny,
-      String? backDefault,
-      String? backShiny});
+      {String front_default,
+      String? front_shiny,
+      String? back_default,
+      String? back_shiny});
 }
 
 /// @nodoc
@@ -63,27 +63,27 @@ class _$PokemonSpritesModelCopyWithImpl<$Res, $Val extends PokemonSpritesModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? frontDefault = null,
-    Object? frongShiny = freezed,
-    Object? backDefault = freezed,
-    Object? backShiny = freezed,
+    Object? front_default = null,
+    Object? front_shiny = freezed,
+    Object? back_default = freezed,
+    Object? back_shiny = freezed,
   }) {
     return _then(_value.copyWith(
-      frontDefault: null == frontDefault
-          ? _value.frontDefault
-          : frontDefault // ignore: cast_nullable_to_non_nullable
+      front_default: null == front_default
+          ? _value.front_default
+          : front_default // ignore: cast_nullable_to_non_nullable
               as String,
-      frongShiny: freezed == frongShiny
-          ? _value.frongShiny
-          : frongShiny // ignore: cast_nullable_to_non_nullable
+      front_shiny: freezed == front_shiny
+          ? _value.front_shiny
+          : front_shiny // ignore: cast_nullable_to_non_nullable
               as String?,
-      backDefault: freezed == backDefault
-          ? _value.backDefault
-          : backDefault // ignore: cast_nullable_to_non_nullable
+      back_default: freezed == back_default
+          ? _value.back_default
+          : back_default // ignore: cast_nullable_to_non_nullable
               as String?,
-      backShiny: freezed == backShiny
-          ? _value.backShiny
-          : backShiny // ignore: cast_nullable_to_non_nullable
+      back_shiny: freezed == back_shiny
+          ? _value.back_shiny
+          : back_shiny // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -98,10 +98,10 @@ abstract class _$$PokemonSpritesModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String frontDefault,
-      String? frongShiny,
-      String? backDefault,
-      String? backShiny});
+      {String front_default,
+      String? front_shiny,
+      String? back_default,
+      String? back_shiny});
 }
 
 /// @nodoc
@@ -117,27 +117,27 @@ class __$$PokemonSpritesModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? frontDefault = null,
-    Object? frongShiny = freezed,
-    Object? backDefault = freezed,
-    Object? backShiny = freezed,
+    Object? front_default = null,
+    Object? front_shiny = freezed,
+    Object? back_default = freezed,
+    Object? back_shiny = freezed,
   }) {
     return _then(_$PokemonSpritesModelImpl(
-      frontDefault: null == frontDefault
-          ? _value.frontDefault
-          : frontDefault // ignore: cast_nullable_to_non_nullable
+      front_default: null == front_default
+          ? _value.front_default
+          : front_default // ignore: cast_nullable_to_non_nullable
               as String,
-      frongShiny: freezed == frongShiny
-          ? _value.frongShiny
-          : frongShiny // ignore: cast_nullable_to_non_nullable
+      front_shiny: freezed == front_shiny
+          ? _value.front_shiny
+          : front_shiny // ignore: cast_nullable_to_non_nullable
               as String?,
-      backDefault: freezed == backDefault
-          ? _value.backDefault
-          : backDefault // ignore: cast_nullable_to_non_nullable
+      back_default: freezed == back_default
+          ? _value.back_default
+          : back_default // ignore: cast_nullable_to_non_nullable
               as String?,
-      backShiny: freezed == backShiny
-          ? _value.backShiny
-          : backShiny // ignore: cast_nullable_to_non_nullable
+      back_shiny: freezed == back_shiny
+          ? _value.back_shiny
+          : back_shiny // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -149,26 +149,26 @@ class _$PokemonSpritesModelImpl
     with DiagnosticableTreeMixin
     implements _PokemonSpritesModel {
   const _$PokemonSpritesModelImpl(
-      {required this.frontDefault,
-      this.frongShiny,
-      this.backDefault,
-      this.backShiny});
+      {required this.front_default,
+      this.front_shiny,
+      this.back_default,
+      this.back_shiny});
 
   factory _$PokemonSpritesModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonSpritesModelImplFromJson(json);
 
   @override
-  final String frontDefault;
+  final String front_default;
   @override
-  final String? frongShiny;
+  final String? front_shiny;
   @override
-  final String? backDefault;
+  final String? back_default;
   @override
-  final String? backShiny;
+  final String? back_shiny;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PokemonSpritesModel(frontDefault: $frontDefault, frongShiny: $frongShiny, backDefault: $backDefault, backShiny: $backShiny)';
+    return 'PokemonSpritesModel(front_default: $front_default, front_shiny: $front_shiny, back_default: $back_default, back_shiny: $back_shiny)';
   }
 
   @override
@@ -176,10 +176,10 @@ class _$PokemonSpritesModelImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PokemonSpritesModel'))
-      ..add(DiagnosticsProperty('frontDefault', frontDefault))
-      ..add(DiagnosticsProperty('frongShiny', frongShiny))
-      ..add(DiagnosticsProperty('backDefault', backDefault))
-      ..add(DiagnosticsProperty('backShiny', backShiny));
+      ..add(DiagnosticsProperty('front_default', front_default))
+      ..add(DiagnosticsProperty('front_shiny', front_shiny))
+      ..add(DiagnosticsProperty('back_default', back_default))
+      ..add(DiagnosticsProperty('back_shiny', back_shiny));
   }
 
   @override
@@ -187,20 +187,20 @@ class _$PokemonSpritesModelImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PokemonSpritesModelImpl &&
-            (identical(other.frontDefault, frontDefault) ||
-                other.frontDefault == frontDefault) &&
-            (identical(other.frongShiny, frongShiny) ||
-                other.frongShiny == frongShiny) &&
-            (identical(other.backDefault, backDefault) ||
-                other.backDefault == backDefault) &&
-            (identical(other.backShiny, backShiny) ||
-                other.backShiny == backShiny));
+            (identical(other.front_default, front_default) ||
+                other.front_default == front_default) &&
+            (identical(other.front_shiny, front_shiny) ||
+                other.front_shiny == front_shiny) &&
+            (identical(other.back_default, back_default) ||
+                other.back_default == back_default) &&
+            (identical(other.back_shiny, back_shiny) ||
+                other.back_shiny == back_shiny));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, frontDefault, frongShiny, backDefault, backShiny);
+      runtimeType, front_default, front_shiny, back_default, back_shiny);
 
   /// Create a copy of PokemonSpritesModel
   /// with the given fields replaced by the non-null parameter values.
@@ -221,22 +221,22 @@ class _$PokemonSpritesModelImpl
 
 abstract class _PokemonSpritesModel implements PokemonSpritesModel {
   const factory _PokemonSpritesModel(
-      {required final String frontDefault,
-      final String? frongShiny,
-      final String? backDefault,
-      final String? backShiny}) = _$PokemonSpritesModelImpl;
+      {required final String front_default,
+      final String? front_shiny,
+      final String? back_default,
+      final String? back_shiny}) = _$PokemonSpritesModelImpl;
 
   factory _PokemonSpritesModel.fromJson(Map<String, dynamic> json) =
       _$PokemonSpritesModelImpl.fromJson;
 
   @override
-  String get frontDefault;
+  String get front_default;
   @override
-  String? get frongShiny;
+  String? get front_shiny;
   @override
-  String? get backDefault;
+  String? get back_default;
   @override
-  String? get backShiny;
+  String? get back_shiny;
 
   /// Create a copy of PokemonSpritesModel
   /// with the given fields replaced by the non-null parameter values.

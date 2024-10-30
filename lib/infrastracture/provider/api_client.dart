@@ -9,13 +9,10 @@ part 'api_client.g.dart';
 @riverpod
 RestClient apiClient(Ref ref) {
   final logger = ref.read(loggerProvider);
+  final logInterceptor = LogInterceptor(logPrint: (o) => logger.i(o.toString()));
 
   final dio = Dio();
   dio.options.headers['Demo-Header'] = 'demo header';
-  dio.interceptors.add(
-    LogInterceptor(
-      logPrint: (o) => logger.i(o.toString()),
-    ),
-  );
+  dio.interceptors.add(logInterceptor);
   return RestClient(dio);
 }

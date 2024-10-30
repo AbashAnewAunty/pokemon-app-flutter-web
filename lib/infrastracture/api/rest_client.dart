@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_model.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_url_list_model.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_url_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -13,5 +14,5 @@ abstract class RestClient {
   Future<PokemonUrlListModel> getPokemonUrlList();
 
   @GET('/pokemon/{idOrName}')
-  Future<PokemonUrlModel> getPokemon(@Path('name') String idOrName);
+  Future<PokemonModel> getPokemon(@Path('name') String idOrName);
 }

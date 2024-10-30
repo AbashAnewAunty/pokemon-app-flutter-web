@@ -57,12 +57,12 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<PokemonUrlModel> getPokemon(String idOrName) async {
+  Future<PokemonModel> getPokemon(String idOrName) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PokemonUrlModel>(Options(
+    final _options = _setStreamType<PokemonModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -79,9 +79,9 @@ class _RestClient implements RestClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PokemonUrlModel _value;
+    late PokemonModel _value;
     try {
-      _value = PokemonUrlModel.fromJson(_result.data!);
+      _value = PokemonModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

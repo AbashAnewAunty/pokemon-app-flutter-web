@@ -15,13 +15,9 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
   logger.i("start get pokemons");
 
   final pokemonUrlListModel = await apiClient.getPokemonUrlList();
-
-  logger.i(pokemonUrlListModel);
-
   final pokemonModels = <PokemonModel>[];
   for (var pokemonUrl in pokemonUrlListModel.results) {
     final pokemonModel = await apiClient.getPokemon(pokemonUrl.name);
-    logger.i(pokemonModel);
     pokemonModels.add(pokemonModel);
   }
 

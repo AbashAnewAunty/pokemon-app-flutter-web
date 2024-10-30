@@ -23,3 +23,18 @@ fvm dart run build_runner build
 ```shell
 firebase deploy
 ```
+
+## その他
+
+### Firebase Hostingについて
+
+本アプリはFirebaseHostingを用いてデプロイしている。
+さて、'firebase deploy' からデプロイを実行すると、ターミナル上に以下のメッセージが表示される。
+
+```string
+Thank you for trying our experimental support for Flutter Web on Firebase Hosting.
+While this integration is maintained by Googlers it is not a supported Firebase product.
+Issues filed on GitHub will be addressed on a best-effort basis by maintainers and other community members.
+```
+
+このことより、FirebaseHostingをFlutterWebで用いることには注意が必要と思われる。

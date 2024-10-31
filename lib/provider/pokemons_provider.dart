@@ -1,7 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pokemon_app_flutter_web/infrastracture/api/rest_client.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/drift/database.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/drift/drift_database_provider.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_model.dart';

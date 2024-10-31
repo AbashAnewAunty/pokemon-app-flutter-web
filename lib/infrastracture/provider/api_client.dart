@@ -13,6 +13,6 @@ RestClient apiClient(Ref ref) {
 
   final dio = Dio();
   dio.options.headers['Demo-Header'] = 'demo header';
-  dio.interceptors.add(logInterceptor);
+  //dio.interceptors.add(logInterceptor);
   return RestClient(dio);
 }

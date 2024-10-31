@@ -24,12 +24,15 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
   final pokemonDbModels = await driftDatabase.select(driftDatabase.pokemons).get();
   final pokemonDbSpriteModels = await driftDatabase.select(driftDatabase.pokemonSprites).get();
 
+  logger.i("saved pokemons count in indexedDB: ${pokemonDbModels.length}");
+
   // サーバーから取得
   final pokemonUrlListModel = await apiClient.getPokemonUrlList();
   final pokemonModels = <PokemonModel>[];
   for (var pokemonUrl in pokemonUrlListModel.results) {
     final pokemonOrNull = pokemonDbModels.firstWhereOrNull((pokemonDbModel) => pokemonDbModel.name == pokemonUrl.name);
     if (pokemonOrNull != null) {
+      logger.i("get pokemon ${pokemonUrl.name} from indexedDB");
       final pokemonSprites =
           pokemonDbSpriteModels.firstWhere((pokemonDbSprites) => pokemonDbSprites.pokemonId == pokemonOrNull.pokemonId);
       pokemonModels.add(
@@ -42,6 +45,7 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
         ),
       );
     } else {
+      logger.i("get pokemon ${pokemonUrl.name} from server");
       final pokemonModel = await apiClient.getPokemon(pokemonUrl.name);
 
       final a = await driftDatabase.into(driftDatabase.pokemons).insert(

@@ -25,6 +25,7 @@ mixin _$PokemonModel {
   int? get height => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
   PokemonSpritesModel get sprites => throw _privateConstructorUsedError;
+  PokemonCriesModel get cries => throw _privateConstructorUsedError;
 
   /// Serializes this PokemonModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,9 +48,11 @@ abstract class $PokemonModelCopyWith<$Res> {
       String name,
       int? height,
       int? weight,
-      PokemonSpritesModel sprites});
+      PokemonSpritesModel sprites,
+      PokemonCriesModel cries});
 
   $PokemonSpritesModelCopyWith<$Res> get sprites;
+  $PokemonCriesModelCopyWith<$Res> get cries;
 }
 
 /// @nodoc
@@ -72,6 +75,7 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
     Object? height = freezed,
     Object? weight = freezed,
     Object? sprites = null,
+    Object? cries = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -94,6 +98,10 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
           ? _value.sprites
           : sprites // ignore: cast_nullable_to_non_nullable
               as PokemonSpritesModel,
+      cries: null == cries
+          ? _value.cries
+          : cries // ignore: cast_nullable_to_non_nullable
+              as PokemonCriesModel,
     ) as $Val);
   }
 
@@ -104,6 +112,16 @@ class _$PokemonModelCopyWithImpl<$Res, $Val extends PokemonModel>
   $PokemonSpritesModelCopyWith<$Res> get sprites {
     return $PokemonSpritesModelCopyWith<$Res>(_value.sprites, (value) {
       return _then(_value.copyWith(sprites: value) as $Val);
+    });
+  }
+
+  /// Create a copy of PokemonModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PokemonCriesModelCopyWith<$Res> get cries {
+    return $PokemonCriesModelCopyWith<$Res>(_value.cries, (value) {
+      return _then(_value.copyWith(cries: value) as $Val);
     });
   }
 }
@@ -121,10 +139,13 @@ abstract class _$$PokemonModelImplCopyWith<$Res>
       String name,
       int? height,
       int? weight,
-      PokemonSpritesModel sprites});
+      PokemonSpritesModel sprites,
+      PokemonCriesModel cries});
 
   @override
   $PokemonSpritesModelCopyWith<$Res> get sprites;
+  @override
+  $PokemonCriesModelCopyWith<$Res> get cries;
 }
 
 /// @nodoc
@@ -145,6 +166,7 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
     Object? height = freezed,
     Object? weight = freezed,
     Object? sprites = null,
+    Object? cries = null,
   }) {
     return _then(_$PokemonModelImpl(
       id: null == id
@@ -167,6 +189,10 @@ class __$$PokemonModelImplCopyWithImpl<$Res>
           ? _value.sprites
           : sprites // ignore: cast_nullable_to_non_nullable
               as PokemonSpritesModel,
+      cries: null == cries
+          ? _value.cries
+          : cries // ignore: cast_nullable_to_non_nullable
+              as PokemonCriesModel,
     ));
   }
 }
@@ -179,7 +205,8 @@ class _$PokemonModelImpl with DiagnosticableTreeMixin implements _PokemonModel {
       required this.name,
       required this.height,
       required this.weight,
-      required this.sprites});
+      required this.sprites,
+      required this.cries});
 
   factory _$PokemonModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PokemonModelImplFromJson(json);
@@ -194,10 +221,12 @@ class _$PokemonModelImpl with DiagnosticableTreeMixin implements _PokemonModel {
   final int? weight;
   @override
   final PokemonSpritesModel sprites;
+  @override
+  final PokemonCriesModel cries;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PokemonModel(id: $id, name: $name, height: $height, weight: $weight, sprites: $sprites)';
+    return 'PokemonModel(id: $id, name: $name, height: $height, weight: $weight, sprites: $sprites, cries: $cries)';
   }
 
   @override
@@ -209,7 +238,8 @@ class _$PokemonModelImpl with DiagnosticableTreeMixin implements _PokemonModel {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('height', height))
       ..add(DiagnosticsProperty('weight', weight))
-      ..add(DiagnosticsProperty('sprites', sprites));
+      ..add(DiagnosticsProperty('sprites', sprites))
+      ..add(DiagnosticsProperty('cries', cries));
   }
 
   @override
@@ -221,13 +251,14 @@ class _$PokemonModelImpl with DiagnosticableTreeMixin implements _PokemonModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.height, height) || other.height == height) &&
             (identical(other.weight, weight) || other.weight == weight) &&
-            (identical(other.sprites, sprites) || other.sprites == sprites));
+            (identical(other.sprites, sprites) || other.sprites == sprites) &&
+            (identical(other.cries, cries) || other.cries == cries));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, height, weight, sprites);
+      Object.hash(runtimeType, id, name, height, weight, sprites, cries);
 
   /// Create a copy of PokemonModel
   /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +282,8 @@ abstract class _PokemonModel implements PokemonModel {
       required final String name,
       required final int? height,
       required final int? weight,
-      required final PokemonSpritesModel sprites}) = _$PokemonModelImpl;
+      required final PokemonSpritesModel sprites,
+      required final PokemonCriesModel cries}) = _$PokemonModelImpl;
 
   factory _PokemonModel.fromJson(Map<String, dynamic> json) =
       _$PokemonModelImpl.fromJson;
@@ -266,6 +298,8 @@ abstract class _PokemonModel implements PokemonModel {
   int? get weight;
   @override
   PokemonSpritesModel get sprites;
+  @override
+  PokemonCriesModel get cries;
 
   /// Create a copy of PokemonModel
   /// with the given fields replaced by the non-null parameter values.

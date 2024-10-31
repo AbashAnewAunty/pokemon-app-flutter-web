@@ -23,3 +23,17 @@ Map<String, dynamic> _$$PokemonSpritesModelImplToJson(
       'back_default': instance.back_default,
       'back_shiny': instance.back_shiny,
     };
+
+_$PokemonCriesModelImpl _$$PokemonCriesModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PokemonCriesModelImpl(
+      latest: json['latest'] as String?,
+      legacy: json['legacy'] as String?,
+    );
+
+Map<String, dynamic> _$$PokemonCriesModelImplToJson(
+        _$PokemonCriesModelImpl instance) =>
+    <String, dynamic>{
+      'latest': instance.latest,
+      'legacy': instance.legacy,
+    };

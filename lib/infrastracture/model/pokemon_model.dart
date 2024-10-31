@@ -17,6 +17,7 @@ class PokemonModel with _$PokemonModel {
     required int? height,
     required int? weight,
     required PokemonSpritesModel sprites,
+    required PokemonCriesModel cries,
   }) = _PokemonModel;
 
   factory PokemonModel.fromJson(Map<String, Object?> json) => _$PokemonModelFromJson(json);

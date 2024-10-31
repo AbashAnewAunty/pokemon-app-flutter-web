@@ -245,3 +245,181 @@ abstract class _PokemonSpritesModel implements PokemonSpritesModel {
   _$$PokemonSpritesModelImplCopyWith<_$PokemonSpritesModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+PokemonCriesModel _$PokemonCriesModelFromJson(Map<String, dynamic> json) {
+  return _PokemonCriesModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PokemonCriesModel {
+  String? get latest => throw _privateConstructorUsedError;
+  String? get legacy => throw _privateConstructorUsedError;
+
+  /// Serializes this PokemonCriesModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PokemonCriesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PokemonCriesModelCopyWith<PokemonCriesModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PokemonCriesModelCopyWith<$Res> {
+  factory $PokemonCriesModelCopyWith(
+          PokemonCriesModel value, $Res Function(PokemonCriesModel) then) =
+      _$PokemonCriesModelCopyWithImpl<$Res, PokemonCriesModel>;
+  @useResult
+  $Res call({String? latest, String? legacy});
+}
+
+/// @nodoc
+class _$PokemonCriesModelCopyWithImpl<$Res, $Val extends PokemonCriesModel>
+    implements $PokemonCriesModelCopyWith<$Res> {
+  _$PokemonCriesModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PokemonCriesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latest = freezed,
+    Object? legacy = freezed,
+  }) {
+    return _then(_value.copyWith(
+      latest: freezed == latest
+          ? _value.latest
+          : latest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      legacy: freezed == legacy
+          ? _value.legacy
+          : legacy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PokemonCriesModelImplCopyWith<$Res>
+    implements $PokemonCriesModelCopyWith<$Res> {
+  factory _$$PokemonCriesModelImplCopyWith(_$PokemonCriesModelImpl value,
+          $Res Function(_$PokemonCriesModelImpl) then) =
+      __$$PokemonCriesModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? latest, String? legacy});
+}
+
+/// @nodoc
+class __$$PokemonCriesModelImplCopyWithImpl<$Res>
+    extends _$PokemonCriesModelCopyWithImpl<$Res, _$PokemonCriesModelImpl>
+    implements _$$PokemonCriesModelImplCopyWith<$Res> {
+  __$$PokemonCriesModelImplCopyWithImpl(_$PokemonCriesModelImpl _value,
+      $Res Function(_$PokemonCriesModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PokemonCriesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latest = freezed,
+    Object? legacy = freezed,
+  }) {
+    return _then(_$PokemonCriesModelImpl(
+      latest: freezed == latest
+          ? _value.latest
+          : latest // ignore: cast_nullable_to_non_nullable
+              as String?,
+      legacy: freezed == legacy
+          ? _value.legacy
+          : legacy // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PokemonCriesModelImpl
+    with DiagnosticableTreeMixin
+    implements _PokemonCriesModel {
+  const _$PokemonCriesModelImpl({this.latest, this.legacy});
+
+  factory _$PokemonCriesModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PokemonCriesModelImplFromJson(json);
+
+  @override
+  final String? latest;
+  @override
+  final String? legacy;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PokemonCriesModel(latest: $latest, legacy: $legacy)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PokemonCriesModel'))
+      ..add(DiagnosticsProperty('latest', latest))
+      ..add(DiagnosticsProperty('legacy', legacy));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PokemonCriesModelImpl &&
+            (identical(other.latest, latest) || other.latest == latest) &&
+            (identical(other.legacy, legacy) || other.legacy == legacy));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, latest, legacy);
+
+  /// Create a copy of PokemonCriesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PokemonCriesModelImplCopyWith<_$PokemonCriesModelImpl> get copyWith =>
+      __$$PokemonCriesModelImplCopyWithImpl<_$PokemonCriesModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PokemonCriesModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PokemonCriesModel implements PokemonCriesModel {
+  const factory _PokemonCriesModel(
+      {final String? latest, final String? legacy}) = _$PokemonCriesModelImpl;
+
+  factory _PokemonCriesModel.fromJson(Map<String, dynamic> json) =
+      _$PokemonCriesModelImpl.fromJson;
+
+  @override
+  String? get latest;
+  @override
+  String? get legacy;
+
+  /// Create a copy of PokemonCriesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PokemonCriesModelImplCopyWith<_$PokemonCriesModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

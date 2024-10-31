@@ -19,3 +19,13 @@ class PokemonSpritesModel with _$PokemonSpritesModel {
 
   factory PokemonSpritesModel.fromJson(Map<String, Object?> json) => _$PokemonSpritesModelFromJson(json);
 }
+
+@freezed
+class PokemonCriesModel with _$PokemonCriesModel {
+  const factory PokemonCriesModel({
+    String? latest,
+    String? legacy,
+  }) = _PokemonCriesModel;
+
+  factory PokemonCriesModel.fromJson(Map<String, Object?> json) => _$PokemonCriesModelFromJson(json);
+}

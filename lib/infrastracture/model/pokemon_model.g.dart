@@ -14,6 +14,7 @@ _$PokemonModelImpl _$$PokemonModelImplFromJson(Map<String, dynamic> json) =>
       weight: (json['weight'] as num?)?.toInt(),
       sprites:
           PokemonSpritesModel.fromJson(json['sprites'] as Map<String, dynamic>),
+      cries: PokemonCriesModel.fromJson(json['cries'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PokemonModelImplToJson(_$PokemonModelImpl instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$PokemonModelImplToJson(_$PokemonModelImpl instance) =>
       'height': instance.height,
       'weight': instance.weight,
       'sprites': instance.sprites,
+      'cries': instance.cries,
     };

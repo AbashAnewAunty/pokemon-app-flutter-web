@@ -9,18 +9,15 @@ class Pokemons extends Table {
   TextColumn get name => text()();
   IntColumn get height => integer().nullable()();
   IntColumn get weight => integer().nullable()();
-}
-
-class PokemonSprites extends Table {
-  IntColumn get id => integer().autoIncrement()();
-  IntColumn get pokemonId => integer().references(Pokemons, #pokemonId)();
   TextColumn get frontDefault => text().nullable()();
   TextColumn get frontShiny => text().nullable()();
   TextColumn get backDefault => text().nullable()();
   TextColumn get backShiny => text().nullable()();
+  TextColumn get latestCry => text().nullable()();
+  TextColumn get legacyCry => text().nullable()();
 }
 
-@DriftDatabase(tables: [Pokemons, PokemonSprites])
+@DriftDatabase(tables: [Pokemons])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(connectOnWeb());
 

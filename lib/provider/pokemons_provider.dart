@@ -22,7 +22,6 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
 
   // ローカルDBから取得
   final pokemonDbModels = await driftDatabase.select(driftDatabase.pokemons).get();
-  final pokemonDbSpriteModels = await driftDatabase.select(driftDatabase.pokemonSprites).get();
 
   logger.i("saved pokemons count in indexedDB: ${pokemonDbModels.length}");
 
@@ -33,38 +32,37 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
     final pokemonOrNull = pokemonDbModels.firstWhereOrNull((pokemonDbModel) => pokemonDbModel.name == pokemonUrl.name);
     if (pokemonOrNull != null) {
       logger.i("get pokemon ${pokemonUrl.name} from indexedDB");
-      final pokemonSprites =
-          pokemonDbSpriteModels.firstWhere((pokemonDbSprites) => pokemonDbSprites.pokemonId == pokemonOrNull.pokemonId);
       pokemonModels.add(
         PokemonModel(
           id: pokemonOrNull.pokemonId,
           name: pokemonOrNull.name,
           height: pokemonOrNull.height,
           weight: pokemonOrNull.weight,
-          sprites: PokemonSpritesModel(front_default: pokemonSprites.frontDefault!),
+          sprites: PokemonSpritesModel(front_default: pokemonOrNull.frontDefault!),
+          cries: PokemonCriesModel(
+            latest: pokemonOrNull.latestCry,
+            legacy: pokemonOrNull.legacyCry,
+          ),
         ),
       );
     } else {
       logger.i("get pokemon ${pokemonUrl.name} from server");
-      final pokemonModel = await apiClient.getPokemon(pokemonUrl.name);
-
-      final a = await driftDatabase.into(driftDatabase.pokemons).insert(
+      final fetchedPokemon = await apiClient.getPokemon(pokemonUrl.name);
+      await driftDatabase.into(driftDatabase.pokemons).insert(
             PokemonsCompanion.insert(
-              pokemonId: pokemonModel.id,
-              name: pokemonModel.name,
-              height: Value(pokemonModel.height),
-              weight: Value(pokemonModel.weight),
+              pokemonId: fetchedPokemon.id,
+              name: fetchedPokemon.name,
+              height: Value(fetchedPokemon.height),
+              weight: Value(fetchedPokemon.weight),
+              frontDefault: Value(fetchedPokemon.sprites.front_default),
+              frontShiny: Value(fetchedPokemon.sprites.front_shiny),
+              backDefault: Value(fetchedPokemon.sprites.back_default),
+              backShiny: Value(fetchedPokemon.sprites.back_shiny),
+              latestCry: Value(fetchedPokemon.cries.latest),
+              legacyCry: Value(fetchedPokemon.cries.legacy),
             ),
           );
-      final b = await driftDatabase.into(driftDatabase.pokemonSprites).insert(
-            PokemonSpritesCompanion.insert(
-              pokemonId: pokemonModel.id,
-              frontDefault: Value(pokemonModel.sprites.front_default),
-            ),
-          );
-      final c = await driftDatabase.select(driftDatabase.pokemons).get();
-      final d = await driftDatabase.select(driftDatabase.pokemonSprites).get();
-      pokemonModels.add(pokemonModel);
+      pokemonModels.add(fetchedPokemon);
     }
   }
 

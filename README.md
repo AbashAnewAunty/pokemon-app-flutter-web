@@ -24,6 +24,34 @@ fvm dart run build_runner build
 firebase deploy
 ```
 
+## トラブルシューティング
+
+### IndexedDBにデータが保存されない
+
+[公式doc](https://drift.simonbinder.eu/platforms/web/)にのっとりdriftのweb対応を行った。
+web対応のなかで`drift_worker.dart.js`をプロジェクトに配置する手順があるが、実際に配置したのは`drift_worker.js`であった。
+（`drift_worker.js`は公式doc内のリンク先からDLできる）
+公式サンプルコードでは`drift_worker.dart.js`のままであったが、同様にコードも修正することで解消できた。
+
+```dart
+DatabaseConnection connectOnWeb() {
+  return DatabaseConnection.delayed(Future(() async {
+    final result = await WasmDatabase.open(
+      databaseName: 'my_app_db', // prefer to only use valid identifiers here
+      sqlite3Uri: Uri.parse('sqlite3.wasm'),
+
+      // 修正前（公式サンプルコード）
+      // driftWorkerUri: Uri.parse('drift_worker.dart.js'),
+
+      // 修正後
+      driftWorkerUri: Uri.parse('drift_worker.js'),
+    );
+    ....
+    return result.resolvedExecutor;
+  }));
+}
+```
+
 ## その他
 
 ### Firebase Hostingについて

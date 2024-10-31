@@ -52,6 +52,13 @@ DatabaseConnection connectOnWeb() {
 }
 ```
 
+### デプロイしたFlutterWebアプリで音声が再生されない
+
+FirebaseHostingではURL音声再生がサポートされていない模様。（アセットからの再生ならできるらしいが）
+解決策を模索中。
+
+<https://stackoverflow.com/questions/77358241/any-workaround-to-firebase-hosting-not-supporting-audio-streaming-for-web-app>
+
 ## その他
 
 ### Firebase Hostingについて

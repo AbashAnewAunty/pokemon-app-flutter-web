@@ -4,18 +4,6 @@
 
 <https://abashanewaunty.github.io/pokemon-app-flutter-web/>
 
-## 実行環境構築
-
-1. lib/firebase_web_config.dartファイルを作成する
-2. 同ファイル内にFirebaseWebConfigクラスを作成
-3. Firebaseプロジェクトから、以下の値をFirebaseWebConfigにstaticな値として保持させる
-   - apiKey
-   - authDomain
-   - projectId
-   - storageBucket
-   - messagingSenderId
-   - appId
-
 ## コード生成
 
 ```shell
@@ -54,6 +42,18 @@ fvm dart run build_runner build –delete-conflicting-outputs
 firebase deploy
 ```
 
+## （旧）実行環境構築
+
+1. lib/firebase_web_config.dartファイルを作成する
+2. 同ファイル内にFirebaseWebConfigクラスを作成
+3. Firebaseプロジェクトから、以下の値をFirebaseWebConfigにstaticな値として保持させる
+   - apiKey
+   - authDomain
+   - projectId
+   - storageBucket
+   - messagingSenderId
+   - appId
+
 ## トラブルシューティング
 
 ### IndexedDBにデータが保存されない
@@ -85,7 +85,7 @@ DatabaseConnection connectOnWeb() {
 ### デプロイしたFlutterWebアプリで音声が再生されない
 
 FirebaseHostingではURL音声再生がサポートされていない模様。（アセットからの再生ならできるらしいが）
-~~ 解決策を模索中。~~
+~解決策を模索中。~
 デプロイ先をGitHub Pageにすることで解消した。
 
 <https://stackoverflow.com/questions/77358241/any-workaround-to-firebase-hosting-not-supporting-audio-streaming-for-web-app>

@@ -1,5 +1,9 @@
 # Pokemon_App_Flutter_Web
 
+## URL
+
+<https://abashanewaunty.github.io/pokemon-app-flutter-web/>
+
 ## 実行環境構築
 
 1. lib/firebase_web_config.dartファイルを作成する
@@ -19,6 +23,32 @@ fvm dart run build_runner build –delete-conflicting-outputs
 ```
 
 ## デプロイ
+
+1. 以下のコマンドを実行
+
+      ```shell
+      fvm flutter build web
+      ```
+
+2. build/index.htmlの内容を書き換える
+
+      ```html
+      <!-- before -->
+      <base href="/">
+
+      <!-- after -->
+      <base href="/<リポジトリ名>/">
+      ```
+
+3. 以下のコマンドを実行
+
+      ```shell
+      mv buld/web docs
+      ```
+
+4. GitHubへpushする
+
+### 旧デプロイ手順
 
 ```shell
 firebase deploy
@@ -55,7 +85,8 @@ DatabaseConnection connectOnWeb() {
 ### デプロイしたFlutterWebアプリで音声が再生されない
 
 FirebaseHostingではURL音声再生がサポートされていない模様。（アセットからの再生ならできるらしいが）
-解決策を模索中。
+~~ 解決策を模索中。~~
+デプロイ先をGitHub Pageにすることで解消した。
 
 <https://stackoverflow.com/questions/77358241/any-workaround-to-firebase-hosting-not-supporting-audio-streaming-for-web-app>
 

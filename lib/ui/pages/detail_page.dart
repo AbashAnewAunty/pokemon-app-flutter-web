@@ -19,7 +19,7 @@ class DetailPage extends HookWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         final player = AudioPlayer();
         await player.setUrl(pokemonModel.cries.legacy!);
-        await player.setVolume(0.5);
+        await player.setVolume(0.1);
         await player.play();
       });
     }, []);

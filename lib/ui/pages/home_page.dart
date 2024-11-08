@@ -10,8 +10,6 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    late final List<PokemonModel> pokemons;
-
     final pokemonsAsyncValue = ref.watch(pokemonModelsProvider);
 
     return Material(
@@ -31,7 +29,6 @@ class HomePage extends HookConsumerWidget {
 class _PokemonListView extends StatelessWidget {
   final List<PokemonModel> pokemonModels;
   const _PokemonListView({
-    super.key,
     required this.pokemonModels,
   });
 

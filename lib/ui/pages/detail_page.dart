@@ -25,7 +25,9 @@ class DetailPage extends HookWidget {
     }, []);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Pokemon Detail"),
+      ),
       backgroundColor: const Color.fromARGB(255, 227, 49, 40),
       body: Align(
         alignment: Alignment.topCenter,

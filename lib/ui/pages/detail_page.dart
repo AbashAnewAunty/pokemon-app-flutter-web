@@ -11,11 +11,6 @@ class DetailPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(() {
-      // 鳴き声再生
-      if (pokemonModel.cries.legacy == null) {
-        return;
-      }
-
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await _playCry();
       });
@@ -93,7 +88,11 @@ class DetailPage extends HookWidget {
     );
   }
 
+  // 鳴き声再生
   Future<void> _playCry() async {
+    if (pokemonModel.cries.legacy == null) {
+      return;
+    }
     final player = AudioPlayer();
     await player.setUrl(pokemonModel.cries.legacy!);
     await player.setVolume(0.1);

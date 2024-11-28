@@ -17,11 +17,7 @@ class DetailPage extends HookWidget {
       }
 
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        final player = AudioPlayer();
-        await player.setUrl(pokemonModel.cries.legacy!);
-        await player.setVolume(0.1);
-        await player.play();
-        await player.dispose();
+        await _playCry();
       });
     }, []);
 
@@ -84,11 +80,24 @@ class DetailPage extends HookWidget {
                 }),
                 const SizedBox(height: 10),
                 Text("height: ${pokemonModel.height} weight: ${pokemonModel.weight}"),
+                const SizedBox(height: 10),
+                GestureDetector(
+                  onTap: _playCry,
+                  child: const Icon(Icons.play_circle_outline_outlined),
+                )
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _playCry() async {
+    final player = AudioPlayer();
+    await player.setUrl(pokemonModel.cries.legacy!);
+    await player.setVolume(0.1);
+    await player.play();
+    await player.dispose();
   }
 }

@@ -15,6 +15,8 @@ class Pokemons extends Table {
   TextColumn get backShiny => text().nullable()();
   TextColumn get latestCry => text().nullable()();
   TextColumn get legacyCry => text().nullable()();
+  TextColumn get type1 => text()();
+  TextColumn get type2 => text().nullable()();
 }
 
 @DriftDatabase(tables: [Pokemons])

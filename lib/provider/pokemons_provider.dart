@@ -5,6 +5,7 @@ import 'package:pokemon_app_flutter_web/infrastracture/drift/database.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/drift/drift_database_provider.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_model.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_sprites_model.dart';
+import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_type_model.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/provider/api_client.dart';
 import 'package:pokemon_app_flutter_web/infrastracture/provider/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -42,6 +43,17 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
             latest: pokemonOrNull.latestCry,
             legacy: pokemonOrNull.legacyCry,
           ),
+          types: [
+            PokemonTypeModel(
+              slot: 999,
+              type: {"name": pokemonOrNull.type1},
+            ),
+            if (pokemonOrNull.type2 != null)
+              PokemonTypeModel(
+                slot: 999,
+                type: {"name": pokemonOrNull.type2},
+              )
+          ],
         ),
       );
     } else {
@@ -59,6 +71,9 @@ Future<List<PokemonModel>> pokemonModels(Ref ref) async {
               backShiny: Value(fetchedPokemon.sprites.back_shiny),
               latestCry: Value(fetchedPokemon.cries.latest),
               legacyCry: Value(fetchedPokemon.cries.legacy),
+              type1: fetchedPokemon.types.first.type["name"],
+              // TODO: ここのコメントアウト外すとエラーになるので解消する
+              //type2: fetchedPokemon.types.length > 1 ? fetchedPokemon.types[1].type["name"] : null,
             ),
           );
       pokemonModels.add(fetchedPokemon);

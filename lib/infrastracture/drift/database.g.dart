@@ -74,6 +74,16 @@ class $PokemonsTable extends Pokemons with TableInfo<$PokemonsTable, Pokemon> {
   late final GeneratedColumn<String> legacyCry = GeneratedColumn<String>(
       'legacy_cry', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _type1Meta = const VerificationMeta('type1');
+  @override
+  late final GeneratedColumn<String> type1 = GeneratedColumn<String>(
+      'type1', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _type2Meta = const VerificationMeta('type2');
+  @override
+  late final GeneratedColumn<String> type2 = GeneratedColumn<String>(
+      'type2', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -86,7 +96,9 @@ class $PokemonsTable extends Pokemons with TableInfo<$PokemonsTable, Pokemon> {
         backDefault,
         backShiny,
         latestCry,
-        legacyCry
+        legacyCry,
+        type1,
+        type2
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -151,6 +163,16 @@ class $PokemonsTable extends Pokemons with TableInfo<$PokemonsTable, Pokemon> {
       context.handle(_legacyCryMeta,
           legacyCry.isAcceptableOrUnknown(data['legacy_cry']!, _legacyCryMeta));
     }
+    if (data.containsKey('type1')) {
+      context.handle(
+          _type1Meta, type1.isAcceptableOrUnknown(data['type1']!, _type1Meta));
+    } else if (isInserting) {
+      context.missing(_type1Meta);
+    }
+    if (data.containsKey('type2')) {
+      context.handle(
+          _type2Meta, type2.isAcceptableOrUnknown(data['type2']!, _type2Meta));
+    }
     return context;
   }
 
@@ -182,6 +204,10 @@ class $PokemonsTable extends Pokemons with TableInfo<$PokemonsTable, Pokemon> {
           .read(DriftSqlType.string, data['${effectivePrefix}latest_cry']),
       legacyCry: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}legacy_cry']),
+      type1: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}type1'])!,
+      type2: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}type2']),
     );
   }
 
@@ -203,6 +229,8 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
   final String? backShiny;
   final String? latestCry;
   final String? legacyCry;
+  final String type1;
+  final String? type2;
   const Pokemon(
       {required this.id,
       required this.pokemonId,
@@ -214,7 +242,9 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
       this.backDefault,
       this.backShiny,
       this.latestCry,
-      this.legacyCry});
+      this.legacyCry,
+      required this.type1,
+      this.type2});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -244,6 +274,10 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
     }
     if (!nullToAbsent || legacyCry != null) {
       map['legacy_cry'] = Variable<String>(legacyCry);
+    }
+    map['type1'] = Variable<String>(type1);
+    if (!nullToAbsent || type2 != null) {
+      map['type2'] = Variable<String>(type2);
     }
     return map;
   }
@@ -275,6 +309,9 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
       legacyCry: legacyCry == null && nullToAbsent
           ? const Value.absent()
           : Value(legacyCry),
+      type1: Value(type1),
+      type2:
+          type2 == null && nullToAbsent ? const Value.absent() : Value(type2),
     );
   }
 
@@ -293,6 +330,8 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
       backShiny: serializer.fromJson<String?>(json['backShiny']),
       latestCry: serializer.fromJson<String?>(json['latestCry']),
       legacyCry: serializer.fromJson<String?>(json['legacyCry']),
+      type1: serializer.fromJson<String>(json['type1']),
+      type2: serializer.fromJson<String?>(json['type2']),
     );
   }
   @override
@@ -310,6 +349,8 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
       'backShiny': serializer.toJson<String?>(backShiny),
       'latestCry': serializer.toJson<String?>(latestCry),
       'legacyCry': serializer.toJson<String?>(legacyCry),
+      'type1': serializer.toJson<String>(type1),
+      'type2': serializer.toJson<String?>(type2),
     };
   }
 
@@ -324,7 +365,9 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
           Value<String?> backDefault = const Value.absent(),
           Value<String?> backShiny = const Value.absent(),
           Value<String?> latestCry = const Value.absent(),
-          Value<String?> legacyCry = const Value.absent()}) =>
+          Value<String?> legacyCry = const Value.absent(),
+          String? type1,
+          Value<String?> type2 = const Value.absent()}) =>
       Pokemon(
         id: id ?? this.id,
         pokemonId: pokemonId ?? this.pokemonId,
@@ -338,6 +381,8 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
         backShiny: backShiny.present ? backShiny.value : this.backShiny,
         latestCry: latestCry.present ? latestCry.value : this.latestCry,
         legacyCry: legacyCry.present ? legacyCry.value : this.legacyCry,
+        type1: type1 ?? this.type1,
+        type2: type2.present ? type2.value : this.type2,
       );
   Pokemon copyWithCompanion(PokemonsCompanion data) {
     return Pokemon(
@@ -356,6 +401,8 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
       backShiny: data.backShiny.present ? data.backShiny.value : this.backShiny,
       latestCry: data.latestCry.present ? data.latestCry.value : this.latestCry,
       legacyCry: data.legacyCry.present ? data.legacyCry.value : this.legacyCry,
+      type1: data.type1.present ? data.type1.value : this.type1,
+      type2: data.type2.present ? data.type2.value : this.type2,
     );
   }
 
@@ -372,14 +419,28 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
           ..write('backDefault: $backDefault, ')
           ..write('backShiny: $backShiny, ')
           ..write('latestCry: $latestCry, ')
-          ..write('legacyCry: $legacyCry')
+          ..write('legacyCry: $legacyCry, ')
+          ..write('type1: $type1, ')
+          ..write('type2: $type2')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, pokemonId, name, height, weight,
-      frontDefault, frontShiny, backDefault, backShiny, latestCry, legacyCry);
+  int get hashCode => Object.hash(
+      id,
+      pokemonId,
+      name,
+      height,
+      weight,
+      frontDefault,
+      frontShiny,
+      backDefault,
+      backShiny,
+      latestCry,
+      legacyCry,
+      type1,
+      type2);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -394,7 +455,9 @@ class Pokemon extends DataClass implements Insertable<Pokemon> {
           other.backDefault == this.backDefault &&
           other.backShiny == this.backShiny &&
           other.latestCry == this.latestCry &&
-          other.legacyCry == this.legacyCry);
+          other.legacyCry == this.legacyCry &&
+          other.type1 == this.type1 &&
+          other.type2 == this.type2);
 }
 
 class PokemonsCompanion extends UpdateCompanion<Pokemon> {
@@ -409,6 +472,8 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
   final Value<String?> backShiny;
   final Value<String?> latestCry;
   final Value<String?> legacyCry;
+  final Value<String> type1;
+  final Value<String?> type2;
   const PokemonsCompanion({
     this.id = const Value.absent(),
     this.pokemonId = const Value.absent(),
@@ -421,6 +486,8 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
     this.backShiny = const Value.absent(),
     this.latestCry = const Value.absent(),
     this.legacyCry = const Value.absent(),
+    this.type1 = const Value.absent(),
+    this.type2 = const Value.absent(),
   });
   PokemonsCompanion.insert({
     this.id = const Value.absent(),
@@ -434,8 +501,11 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
     this.backShiny = const Value.absent(),
     this.latestCry = const Value.absent(),
     this.legacyCry = const Value.absent(),
+    required String type1,
+    this.type2 = const Value.absent(),
   })  : pokemonId = Value(pokemonId),
-        name = Value(name);
+        name = Value(name),
+        type1 = Value(type1);
   static Insertable<Pokemon> custom({
     Expression<int>? id,
     Expression<int>? pokemonId,
@@ -448,6 +518,8 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
     Expression<String>? backShiny,
     Expression<String>? latestCry,
     Expression<String>? legacyCry,
+    Expression<String>? type1,
+    Expression<String>? type2,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -461,6 +533,8 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
       if (backShiny != null) 'back_shiny': backShiny,
       if (latestCry != null) 'latest_cry': latestCry,
       if (legacyCry != null) 'legacy_cry': legacyCry,
+      if (type1 != null) 'type1': type1,
+      if (type2 != null) 'type2': type2,
     });
   }
 
@@ -475,7 +549,9 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
       Value<String?>? backDefault,
       Value<String?>? backShiny,
       Value<String?>? latestCry,
-      Value<String?>? legacyCry}) {
+      Value<String?>? legacyCry,
+      Value<String>? type1,
+      Value<String?>? type2}) {
     return PokemonsCompanion(
       id: id ?? this.id,
       pokemonId: pokemonId ?? this.pokemonId,
@@ -488,6 +564,8 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
       backShiny: backShiny ?? this.backShiny,
       latestCry: latestCry ?? this.latestCry,
       legacyCry: legacyCry ?? this.legacyCry,
+      type1: type1 ?? this.type1,
+      type2: type2 ?? this.type2,
     );
   }
 
@@ -527,6 +605,12 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
     if (legacyCry.present) {
       map['legacy_cry'] = Variable<String>(legacyCry.value);
     }
+    if (type1.present) {
+      map['type1'] = Variable<String>(type1.value);
+    }
+    if (type2.present) {
+      map['type2'] = Variable<String>(type2.value);
+    }
     return map;
   }
 
@@ -543,7 +627,9 @@ class PokemonsCompanion extends UpdateCompanion<Pokemon> {
           ..write('backDefault: $backDefault, ')
           ..write('backShiny: $backShiny, ')
           ..write('latestCry: $latestCry, ')
-          ..write('legacyCry: $legacyCry')
+          ..write('legacyCry: $legacyCry, ')
+          ..write('type1: $type1, ')
+          ..write('type2: $type2')
           ..write(')'))
         .toString();
   }
@@ -572,6 +658,8 @@ typedef $$PokemonsTableCreateCompanionBuilder = PokemonsCompanion Function({
   Value<String?> backShiny,
   Value<String?> latestCry,
   Value<String?> legacyCry,
+  required String type1,
+  Value<String?> type2,
 });
 typedef $$PokemonsTableUpdateCompanionBuilder = PokemonsCompanion Function({
   Value<int> id,
@@ -585,6 +673,8 @@ typedef $$PokemonsTableUpdateCompanionBuilder = PokemonsCompanion Function({
   Value<String?> backShiny,
   Value<String?> latestCry,
   Value<String?> legacyCry,
+  Value<String> type1,
+  Value<String?> type2,
 });
 
 class $$PokemonsTableFilterComposer
@@ -628,6 +718,12 @@ class $$PokemonsTableFilterComposer
 
   ColumnFilters<String> get legacyCry => $composableBuilder(
       column: $table.legacyCry, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type1 => $composableBuilder(
+      column: $table.type1, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type2 => $composableBuilder(
+      column: $table.type2, builder: (column) => ColumnFilters(column));
 }
 
 class $$PokemonsTableOrderingComposer
@@ -672,6 +768,12 @@ class $$PokemonsTableOrderingComposer
 
   ColumnOrderings<String> get legacyCry => $composableBuilder(
       column: $table.legacyCry, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get type1 => $composableBuilder(
+      column: $table.type1, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get type2 => $composableBuilder(
+      column: $table.type2, builder: (column) => ColumnOrderings(column));
 }
 
 class $$PokemonsTableAnnotationComposer
@@ -715,6 +817,12 @@ class $$PokemonsTableAnnotationComposer
 
   GeneratedColumn<String> get legacyCry =>
       $composableBuilder(column: $table.legacyCry, builder: (column) => column);
+
+  GeneratedColumn<String> get type1 =>
+      $composableBuilder(column: $table.type1, builder: (column) => column);
+
+  GeneratedColumn<String> get type2 =>
+      $composableBuilder(column: $table.type2, builder: (column) => column);
 }
 
 class $$PokemonsTableTableManager extends RootTableManager<
@@ -751,6 +859,8 @@ class $$PokemonsTableTableManager extends RootTableManager<
             Value<String?> backShiny = const Value.absent(),
             Value<String?> latestCry = const Value.absent(),
             Value<String?> legacyCry = const Value.absent(),
+            Value<String> type1 = const Value.absent(),
+            Value<String?> type2 = const Value.absent(),
           }) =>
               PokemonsCompanion(
             id: id,
@@ -764,6 +874,8 @@ class $$PokemonsTableTableManager extends RootTableManager<
             backShiny: backShiny,
             latestCry: latestCry,
             legacyCry: legacyCry,
+            type1: type1,
+            type2: type2,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
@@ -777,6 +889,8 @@ class $$PokemonsTableTableManager extends RootTableManager<
             Value<String?> backShiny = const Value.absent(),
             Value<String?> latestCry = const Value.absent(),
             Value<String?> legacyCry = const Value.absent(),
+            required String type1,
+            Value<String?> type2 = const Value.absent(),
           }) =>
               PokemonsCompanion.insert(
             id: id,
@@ -790,6 +904,8 @@ class $$PokemonsTableTableManager extends RootTableManager<
             backShiny: backShiny,
             latestCry: latestCry,
             legacyCry: legacyCry,
+            type1: type1,
+            type2: type2,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

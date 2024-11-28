@@ -59,11 +59,19 @@ class DetailPage extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text("No.${pokemonModel.id} ${pokemonModel.name}"),
+                Text("No.${pokemonModel.id}"),
+                Text(
+                  pokemonModel.name,
+                  style: const TextStyle(
+                    fontFamily: "pixelifySans",
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 const SizedBox(height: 10),
                 Text("height: ${pokemonModel.height}  weight: ${pokemonModel.weight}"),
                 const SizedBox(height: 10),
-                Text("type"),
+                const Text("type"),
                 const SizedBox(height: 10),
                 ...List.generate(pokemonModel.types.length, (index) {
                   return Padding(

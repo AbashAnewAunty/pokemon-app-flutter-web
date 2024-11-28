@@ -21,6 +21,7 @@ class DetailPage extends HookWidget {
         await player.setUrl(pokemonModel.cries.legacy!);
         await player.setVolume(0.1);
         await player.play();
+        await player.dispose();
       });
     }, []);
 
@@ -34,14 +35,18 @@ class DetailPage extends HookWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white, boxShadow: const [
-              BoxShadow(
-                color: Colors.black38,
-                blurRadius: 10,
-                spreadRadius: 10,
-                offset: Offset(5, 7),
-              )
-            ]),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black38,
+                  blurRadius: 10,
+                  spreadRadius: 10,
+                  offset: Offset(5, 7),
+                )
+              ],
+            ),
             padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

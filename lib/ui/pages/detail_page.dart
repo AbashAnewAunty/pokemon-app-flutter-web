@@ -69,16 +69,16 @@ class DetailPage extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text("height: ${pokemonModel.height}  weight: ${pokemonModel.weight}"),
-                const SizedBox(height: 10),
                 const Text("type"),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 ...List.generate(pokemonModel.types.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.only(left: 10, bottom: 5),
                     child: Text(pokemonModel.types[index].type["name"]),
                   );
-                })
+                }),
+                const SizedBox(height: 10),
+                Text("height: ${pokemonModel.height} weight: ${pokemonModel.weight}"),
               ],
             ),
           ),

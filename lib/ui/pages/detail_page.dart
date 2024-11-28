@@ -14,6 +14,7 @@ class DetailPage extends HookWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         await _playCry();
       });
+      return null;
     }, []);
 
     return Scaffold(

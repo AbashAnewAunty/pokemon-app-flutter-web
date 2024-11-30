@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pokemon App Flutter Web',
       theme: ThemeData(
         fontFamily: 'dotGothic16Regular',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

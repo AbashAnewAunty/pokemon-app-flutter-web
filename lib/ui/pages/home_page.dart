@@ -5,7 +5,7 @@ import 'package:pokemon_app_flutter_web/infrastracture/model/pokemon_model.dart'
 import 'package:pokemon_app_flutter_web/provider/pokemons_provider.dart';
 import 'package:pokemon_app_flutter_web/ui/pages/detail_page.dart';
 
-class HomePage extends HookConsumerWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
